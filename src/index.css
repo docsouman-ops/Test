@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+  --color-accent: #ff3b00;
+  --color-accent-hover: #e63500;
+  --color-dark: #0a0a0a;
+  --color-card: #121212;
+  --color-card-border: #222222;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-mono-tech {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff3b00;
+}
+
+/* Noise texture effect */
+.bg-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-fast {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-fast {
+  display: flex;
+  width: max-content;
+  animation: marquee-fast 20s linear infinite;
+}
+
+/* ==========================================================================
+   REAL-TIME BRAND SCALE MODE STYLES & MOBILE OPTIMIZATIONS
+   ========================================================================== */
+
+/* Universal mobile-safe text wrapping and layout guards */
+* {
+  overflow-wrap: break-word;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Root smooth transition indicator */
+html.scale-mode-active,
+body.scale-mode-active {
+  --scale-font-ratio: 1.15;
+  --scale-media-ratio: 1.05;
+}
+
+/* Responsive root scaling: Safe on mobile without blowout, expanded on tablet/desktop */
+html.scale-mode-active {
+  font-size: 106%;
+}
+
+@media (min-width: 640px) {
+  html.scale-mode-active {
+    font-size: 112%;
+  }
+}
+
+@media (min-width: 1024px) {
+  html.scale-mode-active {
+    font-size: 115%;
+  }
+}
+
+/* Smooth transitions for typography and interactive text elements */
+p,
+blockquote,
+figcaption,
+.scale-body-text {
+  transition: font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1), line-height 0.3s ease;
+}
+
+/* When Scale Mode is active: Enlarge body reading paragraphs while respecting hierarchy */
+.scale-mode-active p:not(.no-scale):not(.font-mono-tech),
+.scale-mode-active blockquote,
+.scale-mode-active .scale-body-text {
+  line-height: 1.72 !important;
+}
+
+/* Smooth expansion transitions for image containers and media cards */
+img,
+.scale-media-container {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, filter 0.4s ease;
+}
+
+/* When Scale Mode is active: Expand image containers slightly with controlled bounds */
+.scale-mode-active img:not(.no-scale) {
+  transform: scale(1.035);
+}
+
+.scale-mode-active .scale-media-container {
+  box-shadow: 0 16px 36px -10px rgba(255, 59, 0, 0.25);
+}
+
+/* Project and card wrappers expand gently on hover */
+.scale-mode-active .group:hover img:not(.no-scale) {
+  transform: scale(1.06) !important;
+}
+
+/* Safeguard against image overflow clipping on rounded cards */
+.scale-mode-active article,
+.scale-mode-active .rounded-3xl,
+.scale-mode-active .rounded-2xl {
+  overflow: hidden;
+}
+
