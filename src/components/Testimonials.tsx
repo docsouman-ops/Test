@@ -2,148 +2,162 @@ import React from 'react';
 
 export const Testimonials: React.FC = () => {
   return (
-    <section
-      id="testimonials"
-      className="w-full py-[108px] pb-[160px] relative overflow-hidden"
-      style={{
-        background: 'linear-gradient(180deg, #edf3f9 0%, #f6f9fc 50%, #fdfefe 100%)',
-      }}
-    >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          {/* Short Orange Horizontal Accent Bar */}
-          <div className="w-12 h-1 bg-[#e85924] mx-auto mb-4 rounded-full" />
-          <h2 className="text-[#0d1f2f] font-heading font-extrabold text-3xl sm:text-4xl lg:text-[2.75rem] tracking-tight leading-tight mb-3">
-            Trusted by Brands That Dare to Grow
-          </h2>
-          <p className="font-body text-[#475e73] text-base sm:text-lg">
-            A few words from the businesses we’ve helped scale.
-          </p>
+    <section className="section testimonials animatedParent animateOnce" id="testimonials">
+      <div className="container">
+        <div className="testimonials-header animated fadeInUpShort">
+          <span className="testimonials-accent-bar" aria-hidden="true"></span>
+          <h2 className="section-title testimonials-title">Trusted by Brands That Dare to Grow</h2>
+          <p className="testimonials-subtitle">A few words from the businesses we've helped scale.</p>
         </div>
 
-        {/* Exactly One Testimonial Card */}
-        <div className="max-w-[760px] mx-auto">
-          <div className="bg-white rounded-[20px] p-6 sm:p-10 border border-[#f29b55]/40 shadow-[0_12px_36px_rgba(242,155,85,0.12)] relative">
-            {/* Large Orange Quotation Mark */}
-            <div className="text-[#e85924] font-heading font-black text-6xl sm:text-7xl leading-none select-none -mt-4 mb-2 opacity-90">
-              “
-            </div>
+        <div className="testimonials-carousel-wrapper animated fadeInUpShort">
+          <button
+            className="testimonials-nav-btn prev"
+            type="button"
+            aria-label="Previous testimonial"
+            disabled
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
 
-            {/* Dark Navy Quote Text */}
-            <p className="font-body text-[#0d1f2f] text-base sm:text-[1.12rem] leading-[1.72] mb-8 font-medium">
-              Scal It Up brought a thoughtful, strategic approach to our engagement. From shaping our company profile to conducting a comprehensive website audit, their team went beyond surface-level observations to identify improvement opportunities and provide actionable recommendations for our next phase of digital development.
-            </p>
-
-            {/* Horizontal Divider */}
-            <div className="w-full h-[1px] bg-[rgba(18,34,51,0.1)] mb-6" />
-
-            {/* Author Block with Orange Vertical Accent */}
-            <div className="flex items-center gap-4">
-              <div className="w-1 h-10 bg-[#e85924] rounded-full shrink-0" />
-              <div>
-                <h4 className="font-heading font-bold text-base sm:text-lg text-[#0d1f2f]">
-                  Canrod Management Team
-                </h4>
-                <p className="font-body text-xs sm:text-sm text-[#475e73]">
-                  Client Partner
-                </p>
+          <div
+            className="testimonials-carousel"
+            role="region"
+            aria-label="Client testimonials"
+            aria-roledescription="carousel"
+          >
+            <div className="testimonials-viewport" tabIndex={0}>
+              <div className="testimonials-track">
+                {/* Featured Testimonial - Canrod Management Team */}
+                <article className="testimonial-card is-featured">
+                  <div className="testimonial-card-inner">
+                    <div className="testimonial-quote-icon" aria-hidden="true">
+                      <svg viewBox="0 0 32 26" fill="currentColor">
+                        <path d="M0 15.6C0 7.8 4.6 2.2 13.8 0l1.8 3.2C10.2 4.6 8 7.6 7.6 10.8c1.2-.2 2.4-.2 3.6.2 3.8 1.4 6 5.2 5.2 9.2-.8 4-4.4 6.8-8.6 6.6-4.6-.2-7.8-4-7.8-11.2zm17.6 0C17.6 7.8 22.2 2.2 31.4 0l1.8 3.2c-5.4 1.4-7.6 4.4-8 7.6 1.2-.2 2.4-.2 3.6.2 3.8 1.4 6 5.2 5.2 9.2-.8 4-4.4 6.8-8.6 6.6-4.6-.2-7.8-4-7.8-11.2z" />
+                      </svg>
+                    </div>
+                    <p className="testimonial-text">
+                      “Scal It Up brought a thoughtful, strategic approach to our engagement. From shaping our company
+                      profile to conducting a comprehensive website audit, their team went beyond surface-level
+                      observations to identify improvement opportunities and provide actionable recommendations for our
+                      next phase of digital development.”
+                    </p>
+                    <div className="testimonial-divider"></div>
+                    <div className="testimonial-author-block">
+                      <span className="testimonial-author-bar" aria-hidden="true"></span>
+                      <div className="testimonial-author-meta">
+                        <strong className="testimonial-author-name">Canrod Management Team</strong>
+                        <span className="testimonial-author-role">Client Partner</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
               </div>
             </div>
           </div>
 
-          {/* Controls: Preserving original visual controls */}
-          <div className="mt-8 flex items-center justify-center gap-6">
-            <button
-              disabled
-              className="w-10 h-10 rounded-full border border-[rgba(18,34,51,0.12)] flex items-center justify-center text-neutral-400 opacity-50 cursor-default"
-              aria-label="Previous testimonial"
+          <button
+            className="testimonials-nav-btn next"
+            type="button"
+            aria-label="Next testimonial"
+            disabled
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
             >
-              <svg className="w-4 h-4 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <div className="flex items-center gap-1.5">
-              <div className="w-6 h-2 rounded-full bg-[#e85924]" />
-            </div>
-            <button
-              disabled
-              className="w-10 h-10 rounded-full border border-[rgba(18,34,51,0.12)] flex items-center justify-center text-neutral-400 opacity-50 cursor-default"
-              aria-label="Next testimonial"
-            >
-              <svg className="w-4 h-4 stroke-current" fill="none" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="testimonials-dots" role="tablist" aria-label="Testimonial slides">
+          <button
+            type="button"
+            className="testimonials-dot is-active"
+            aria-label="Go to testimonial slide 1"
+            aria-selected="true"
+          />
         </div>
       </div>
 
-      {/* Decorative Bottom Waves: Organic Ribbon Wave SVG positioned absolutely at the bottom */}
-      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden pointer-events-none leading-none z-0">
-        <svg
-          viewBox="0 0 1440 180"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-auto min-h-[90px] max-h-[140px] preserve-3d"
-        >
+      {/* Decorative Fluid Wave Ribbons matching screenshot */}
+      <div className="testimonials-wave-decor" aria-hidden="true">
+        <svg viewBox="0 0 1440 140" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M-40 140C120 40 280 120 460 70C560 40 680 110 760 130L760 140Z"
+            fill="url(#waveBlue1)"
+            opacity="0.75"
+          />
+          <path
+            d="M-20 140C80 80 220 50 380 95C520 135 640 115 720 140Z"
+            fill="url(#waveBlue2)"
+            opacity="0.6"
+          />
+          <path
+            d="M-50 140C160 110 260 30 440 80C540 110 600 140 680 140Z"
+            fill="url(#waveBlue3)"
+            opacity="0.45"
+          />
+
+          <path
+            d="M1480 140C1320 40 1160 120 980 70C880 40 760 110 680 130L680 140Z"
+            fill="url(#waveOrange1)"
+            opacity="0.75"
+          />
+          <path
+            d="M1460 140C1360 80 1220 50 1060 95C920 135 800 115 720 140Z"
+            fill="url(#waveOrange2)"
+            opacity="0.6"
+          />
+          <path
+            d="M1490 140C1280 110 1180 30 1000 80C900 110 840 140 760 140Z"
+            fill="url(#waveOrange3)"
+            opacity="0.45"
+          />
+
           <defs>
-            {/* Left Blue Wave Gradients */}
-            <linearGradient id="blueWave1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0284c7" stopOpacity="0.85" />
-              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.4" />
+            <linearGradient id="waveBlue1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#0284c7" />
+              <stop offset="100%" stopColor="#38bdf8" />
             </linearGradient>
-            <linearGradient id="blueWave2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0369a1" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#bae6fd" stopOpacity="0.3" />
+            <linearGradient id="waveBlue2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#0369a1" />
+              <stop offset="100%" stopColor="#0ea5e9" />
             </linearGradient>
-            <linearGradient id="blueWave3" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0284c7" stopOpacity="0.75" />
-              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.2" />
+            <linearGradient id="waveBlue3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#38bdf8" />
+              <stop offset="100%" stopColor="#bae6fd" />
             </linearGradient>
 
-            {/* Right Orange Wave Gradients */}
-            <linearGradient id="orangeWave1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#ea580c" stopOpacity="0.85" />
-              <stop offset="100%" stopColor="#fb923c" stopOpacity="0.5" />
+            <linearGradient id="waveOrange1" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#ea580c" />
+              <stop offset="100%" stopColor="#fb923c" />
             </linearGradient>
-            <linearGradient id="orangeWave2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#c2410c" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#fed7aa" stopOpacity="0.35" />
+            <linearGradient id="waveOrange2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#c2410c" />
+              <stop offset="100%" stopColor="#f97316" />
             </linearGradient>
-            <linearGradient id="orangeWave3" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#f97316" stopOpacity="0.75" />
-              <stop offset="100%" stopColor="#fed7aa" stopOpacity="0.25" />
+            <linearGradient id="waveOrange3" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#fb923c" />
+              <stop offset="100%" stopColor="#fed7aa" />
             </linearGradient>
           </defs>
-
-          {/* Left Layered Blue Waves */}
-          <path
-            d="M0,130 C200,90 380,160 550,110 C680,75 750,140 820,180 L0,180 Z"
-            fill="url(#blueWave1)"
-          />
-          <path
-            d="M0,145 C160,110 320,175 480,135 C620,100 700,160 760,180 L0,180 Z"
-            fill="url(#blueWave2)"
-          />
-          <path
-            d="M0,160 C120,135 240,170 380,150 C500,130 580,170 650,180 L0,180 Z"
-            fill="url(#blueWave3)"
-          />
-
-          {/* Right Layered Orange Waves */}
-          <path
-            d="M740,180 C810,135 920,80 1080,115 C1240,150 1340,95 1440,125 L1440,180 Z"
-            fill="url(#orangeWave1)"
-          />
-          <path
-            d="M820,180 C890,145 980,105 1130,135 C1270,165 1370,115 1440,140 L1440,180 Z"
-            fill="url(#orangeWave2)"
-          />
-          <path
-            d="M920,180 C990,155 1080,130 1200,150 C1310,170 1390,140 1440,155 L1440,180 Z"
-            fill="url(#orangeWave3)"
-          />
         </svg>
       </div>
     </section>

@@ -51,7 +51,7 @@ export function useResizeObserver<T extends HTMLElement = HTMLDivElement>(
 
   const targetRef = useRef<T | null>(null);
   const frameIdRef = useRef<number | null>(null);
-  const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutIdRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [dimensions, setDimensions] = useState<ContainerDimensions>(() => {
     const initialWidth = typeof window !== 'undefined' ? window.innerWidth : 1440;

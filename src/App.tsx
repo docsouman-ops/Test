@@ -11,67 +11,84 @@ import { Footer } from './components/Footer';
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
 
+  // Scroll spy matching main.js: section.getBoundingClientRect().top <= 120
   useEffect(() => {
-    const handleScroll = () => {
-      const sectionIds = ['home', 'capabilities', 'about', 'our-approach', 'testimonials', 'contact'];
-      const scrollPos = window.scrollY + 180;
+    const sectionIds = ['home', 'capabilities', 'about', 'our-approach', 'testimonials', 'contact'];
 
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(id);
-            return;
-          }
-        }
-      }
+    const updateActiveNavLink = () => {
+      const sections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter((el): el is HTMLElement => Boolean(el));
 
-      if (window.scrollY < 200) {
-        setActiveSection('home');
+      if (sections.length === 0) return;
+
+      const currentSection = sections.reduce((current, section) => {
+        return section.getBoundingClientRect().top <= 120 ? section : current;
+      }, sections[0]);
+
+      if (currentSection && currentSection.id) {
+        setActiveSection(currentSection.id);
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+    window.addEventListener('resize', updateActiveNavLink);
+    updateActiveNavLink();
+
+    return () => {
+      window.removeEventListener('scroll', updateActiveNavLink);
+      window.removeEventListener('resize', updateActiveNavLink);
+    };
   }, []);
 
-  const handleScrollToContact = () => {
-    const contactEl = document.getElementById('contact');
-    if (contactEl) {
-      contactEl.scrollIntoView({ behavior: 'smooth' });
+  // Scroll-reveal IntersectionObserver matching css3-animate-it (.animatedParent -> .animated.go)
+  useEffect(() => {
+    const parents = Array.from(document.querySelectorAll('.animatedParent'));
+
+    if (!('IntersectionObserver' in window)) {
+      parents.forEach((parent) => {
+        parent.querySelectorAll('.animated').forEach((el) => el.classList.add('go'));
+      });
+      return;
     }
-  };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.animated').forEach((el) => {
+              el.classList.add('go');
+            });
+            if (entry.target.classList.contains('animateOnce')) {
+              observer.unobserve(entry.target);
+            }
+          } else if (!entry.target.classList.contains('animateOnce')) {
+            entry.target.querySelectorAll('.animated').forEach((el) => {
+              el.classList.remove('go');
+            });
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    parents.forEach((parent) => observer.observe(parent));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f5f8fd] to-[#edf3fb] text-[#122233] font-body selection:bg-[#f29b55] selection:text-white flex flex-col">
-      {/* 1. Header and Navigation */}
+    <>
       <Header activeSection={activeSection} />
-
-      {/* Main Single Continuous Scrolling Page */}
-      <main className="flex-1">
-        {/* 2. Hero Section */}
-        <Hero onCtaClick={handleScrollToContact} />
-
-        {/* 3. Integrated Capabilities */}
+      <main>
+        <Hero />
         <Capabilities />
-
-        {/* 4. About Scal It Up */}
         <About />
-
-        {/* 5. Our Approach */}
         <Approach />
-
-        {/* 6. Testimonials */}
         <Testimonials />
-
-        {/* 7. Contact Section */}
         <Contact />
       </main>
-
-      {/* 8. Footer */}
       <Footer />
-    </div>
+    </>
   );
 }
